@@ -7,7 +7,7 @@ import StyledLink from "../../components/StyledLink"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { ThreeDots } from "react-loader-spinner"
-
+import axios from "axios"
 
 export default function SignUpPage() {
     const [form, setForm] = useState({ email: "", password: "", name: "", confirm_password:"" })
@@ -19,11 +19,19 @@ export default function SignUpPage() {
     }
 
     function handleSignUp(e) {
-        e.preventDefault()
-
-        navigate("/home")
-    
-       
+        e.preventDefault();
+        setIsLoading(true)
+        const body = {...form}
+        const promise = axios.post(`${process.env.REACT_APP_API_URL}/cadastro`, body);
+        promise.then(()=>{
+            setIsLoading(false)
+            navigate("/")
+        })
+        promise.catch((err)=>{
+            setIsLoading(false)
+            console.log(err)
+            alert(err.message)
+        })  
     }
 
     return (

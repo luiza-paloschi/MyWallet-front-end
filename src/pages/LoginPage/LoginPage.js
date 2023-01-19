@@ -4,22 +4,37 @@ import StyledInput from "../../components/StyledInput"
 import StyledButton from "../../components/StyledButton"
 import StyledLink from "../../components/StyledLink"
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { ThreeDots } from "react-loader-spinner"
+import { UserContext } from "../../contexts/UserContext"
+import axios from "axios"
+
 
 export default function LoginPage() {
     const [form, setForm] = useState({ email: "", password: "" })
     const [isLoading, setIsLoading] = useState(false)
+    const { user, setUser } = useContext(UserContext)
     const navigate = useNavigate()
 
     function handleForm(e) {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
-    function handleLogin(e) {
+    async function handleLogin(e) {
         e.preventDefault()
         setIsLoading(true)
-        navigate("/home")
+        const body = {...form}
+        try {
+            const token = await axios.post(`${process.env.REACT_APP_API_URL}/`, body);
+            console.log(token)
+            setUser(token.data)
+            setIsLoading(false)
+            navigate("/home")
+        } catch (error) {
+            setIsLoading(false)
+            console.log(error)
+        }
+        
     }
 
     return (
