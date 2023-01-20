@@ -35,19 +35,28 @@ export const Header = styled.div`
 export const NoRegistriesContainer = styled.div`
     width: calc(100% - 48px);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 446px;
     background: #FFFFFF;
     border-radius: 5px;
-    padding: 0px 60px;
+    position: relative;
     p{
         font-weight: 400;
         font-size: 20px;
         line-height: 23px;
+        margin:auto;
         text-align: center;
         color: #868686;
     }
+`
+export const Registries = styled.div`
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 90%;
+    overflow-y: scroll;
 `
 
 export const DivButtons = styled.div`

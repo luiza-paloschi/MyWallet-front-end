@@ -13,7 +13,7 @@ import axios from "axios"
 export default function LoginPage() {
     const [form, setForm] = useState({ email: "", password: "" })
     const [isLoading, setIsLoading] = useState(false)
-    const { user, setUser } = useContext(UserContext)
+    const { setUser } = useContext(UserContext)
     const navigate = useNavigate()
 
     function handleForm(e) {
@@ -26,13 +26,13 @@ export default function LoginPage() {
         const body = {...form}
         try {
             const token = await axios.post(`${process.env.REACT_APP_API_URL}/`, body);
-            console.log(token)
+            localStorage.setItem("user", JSON.stringify(token.data))
             setUser(token.data)
             setIsLoading(false)
             navigate("/home")
         } catch (error) {
             setIsLoading(false)
-            console.log(error)
+            alert(error)
         }
         
     }
