@@ -3,7 +3,7 @@ import logOut from "../../assets/Vector.svg"
 import StyledNewRegistryButton from "../../components/StyledNewRegistryButton";
 import novaEntrada from "../../assets/NovaEntrada.svg"
 import novaSaida from "../../assets/NovaSaida.svg"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import axios from "axios";
@@ -11,9 +11,10 @@ import RegistryCard from "../../components/RegistryCard/RegistryCard";
 import { DivBalance } from "../../components/DivBalance";
 
 export default function HomePage() {
-    const { user } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
     const [registries, setRegistries] = useState([])
     const [balance, setBalance] = useState(0)
+    const navigate = useNavigate()
 
     const config = {
         headers: {
@@ -45,11 +46,16 @@ export default function HomePage() {
         })
     }, [])
 
+    function handleLogout(){
+        setUser({});
+        localStorage.clear();
+        navigate("/");
+    }
     return (
         <Container>
             <Header>
                 <h1>Olá, {`${user.name}`}</h1>
-                <img src={logOut} alt="LogOut" />
+                <img src={logOut} alt="Logout" onClick={handleLogout}/>
             </Header>
             <NoRegistriesContainer>
                 {registries.length > 0 ?
