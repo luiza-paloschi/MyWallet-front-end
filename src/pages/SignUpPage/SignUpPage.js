@@ -1,35 +1,35 @@
-
-import { Container } from "./styled"
-import StyledForm from "../../components/StyledForm"
-import StyledInput from "../../components/StyledInput"
-import StyledButton from "../../components/StyledButton"
-import StyledLink from "../../components/StyledLink"
-import { useNavigate } from "react-router-dom"
-import { useState } from "react"
-import { ThreeDots } from "react-loader-spinner"
-import axios from "axios"
+import { Container } from "./styled";
+import StyledForm from "../../components/StyledForm";
+import StyledInput from "../../components/StyledInput";
+import StyledButton from "../../components/StyledButton";
+import StyledLink from "../../components/StyledLink";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
+import axios from "axios";
 
 export default function SignUpPage() {
-    const [form, setForm] = useState({ email: "", password: "", name: "", confirm_password:"" })
-    const [isLoading, setIsLoading] = useState(false)
-    const navigate = useNavigate()
+    const [form, setForm] = useState({ email: "", password: "", name: "", confirm_password:"" });
+    const [isLoading, setIsLoading] = useState(false);
+    const navigate = useNavigate();
 
     function handleForm(e) {
-        setForm({ ...form, [e.target.name]: e.target.value })
+        setForm({ ...form, [e.target.name]: e.target.value });
     }
 
     function handleSignUp(e) {
         e.preventDefault();
-        setIsLoading(true)
-        const body = {...form}
+        setIsLoading(true);
+        const body = {...form};
         const promise = axios.post(`${process.env.REACT_APP_API_URL}/cadastro`, body);
-        promise.then(()=>{
-            setIsLoading(false)
-            navigate("/")
+        promise.then((res)=>{
+            setIsLoading(false);
+            alert(res.data);
+            navigate("/");
         })
         promise.catch((err)=>{
-            setIsLoading(false)
-            alert(err.message)
+            setIsLoading(false);
+            alert(err.response.data);
         })  
     }
 
@@ -85,5 +85,5 @@ export default function SignUpPage() {
                 Já tem uma conta? Faça login!
             </StyledLink>
         </Container>
-    )
+    );
 }

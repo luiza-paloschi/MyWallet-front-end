@@ -4,7 +4,7 @@ import StyledInput from "../../components/StyledInput"
 import StyledButton from "../../components/StyledButton"
 import StyledLink from "../../components/StyledLink"
 import { useNavigate } from "react-router-dom"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { ThreeDots } from "react-loader-spinner"
 import { UserContext } from "../../contexts/UserContext"
 import axios from "axios"
@@ -20,6 +20,11 @@ export default function LoginPage() {
         setForm({ ...form, [e.target.name]: e.target.value })
     }
 
+    useEffect(()=>{
+        setUser({});
+        localStorage.clear();
+    }, [])
+
     async function handleLogin(e) {
         e.preventDefault()
         setIsLoading(true)
@@ -32,7 +37,8 @@ export default function LoginPage() {
             navigate("/home")
         } catch (error) {
             setIsLoading(false)
-            alert(error)
+            console.log(error)
+            alert(error.response.data)
         }
         
     }

@@ -67,7 +67,7 @@ export default function HomePage() {
                         </Registries>
                         <DivBalance balance={balance}>
                             <h2>SALDO</h2>
-                            <h3>{balance.toString().replace(".", ",")}</h3>
+                            <h3>{balance.toFixed(2).toString().replace(".", ",")}</h3>
                         </DivBalance>
                     </>
 

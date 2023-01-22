@@ -8,7 +8,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { Container, Header } from "./styled";
 
 export default function NewOutflow(){
-    const [form, setForm] = useState({ value: "", description: ""})
+    const [form, setForm] = useState({ value: "", description: "", type:"outflow"})
     const navigate = useNavigate()
     const {user} = useContext(UserContext)
 
@@ -27,10 +27,10 @@ export default function NewOutflow(){
         e.preventDefault()
         const body = {...form}
         try {
-            await axios.post(`${process.env.REACT_APP_API_URL}/nova-saida`, body, config);
+            await axios.post(`${process.env.REACT_APP_API_URL}/novo-registro`, body, config);
             navigate("/home")
         } catch (error) {
-            alert(error)
+            alert(error.response.data)
         }
        
     }

@@ -8,7 +8,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { Container, Header } from "./styled";
 
 export default function NewEntry(){
-    const [form, setForm] = useState({ value: "", description: "" })
+    const [form, setForm] = useState({ value: "", description: "", type:"entry"})
     const navigate = useNavigate()
     const {user} = useContext(UserContext)
 
@@ -27,10 +27,10 @@ export default function NewEntry(){
         e.preventDefault()
         const body = {...form}
         try {
-            await axios.post(`${process.env.REACT_APP_API_URL}/nova-entrada`, body, config);
+            await axios.post(`${process.env.REACT_APP_API_URL}/novo-registro`, body, config);
             navigate("/home")
         } catch (error) {
-            alert(error)
+            alert(error.response.data)
         }
        
     }
