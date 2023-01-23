@@ -42,6 +42,7 @@ export default function NewEntry(){
             </Header>
             <StyledForm onSubmit={handleRegistry}>
                 <StyledInput
+                    data-test="registry-amount-input"
                     name="value"
                     placeholder="Valor"
                     type="text"
@@ -50,6 +51,7 @@ export default function NewEntry(){
                     onChange={handleForm}
                 />
                 <StyledInput
+                    data-test="registry-name-input"
                     name="description"
                     placeholder="Descrição"
                     type="text"
@@ -57,7 +59,7 @@ export default function NewEntry(){
                     value={form.description}
                     onChange={handleForm}
                 />
-                <StyledButton type="submit">
+                <StyledButton data-test="registry-save" type="submit">
                     Salvar entrada
                 </StyledButton>
             </StyledForm>

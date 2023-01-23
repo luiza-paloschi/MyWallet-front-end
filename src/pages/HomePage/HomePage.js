@@ -67,7 +67,7 @@ export default function HomePage() {
                         </Registries>
                         <DivBalance balance={balance}>
                             <h2>SALDO</h2>
-                            <h3>{balance.toFixed(2).toString().replace(".", ",")}</h3>
+                            <h3 data-test="total amount">{balance.toFixed(2).toString().replace(".", ",")}</h3>
                         </DivBalance>
                     </>
 
@@ -77,14 +77,14 @@ export default function HomePage() {
 
             <DivButtons>
                 <Link to="/nova-entrada">
-                    <StyledNewRegistryButton>
+                    <StyledNewRegistryButton data-test="new-income">
                         <img src={novaEntrada} alt="Nova Entrada" />
                         <p>Nova</p>
                         <p>entrada</p>
                     </StyledNewRegistryButton>
                 </Link>
                 <Link to="/nova-saida">
-                    <StyledNewRegistryButton>
+                    <StyledNewRegistryButton data-test="new-expense">
                         <img src={novaSaida} alt="Nova Saída" />
                         <p>Nova</p>
                         <p>saída</p>
