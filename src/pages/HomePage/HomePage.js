@@ -54,8 +54,8 @@ export default function HomePage() {
     return (
         <Container>
             <Header>
-                <h1>Olá, {`${user.name}`}</h1>
-                <img src={logOut} alt="Logout" onClick={handleLogout}/>
+                <h1 data-test="user-name">Olá, {`${user.name}`}</h1>
+                <img src={logOut} data-test="logout" alt="Logout" onClick={handleLogout}/>
             </Header>
             <NoRegistriesContainer>
                 {registries.length > 0 ?

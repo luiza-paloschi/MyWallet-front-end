@@ -48,6 +48,7 @@ export default function LoginPage() {
             <h1>My Wallet</h1>
             <StyledForm onSubmit={handleLogin}>
                 <StyledInput
+                    data-test="email"
                     name="email"
                     placeholder="E-mail"
                     type="email"
@@ -57,6 +58,7 @@ export default function LoginPage() {
                     onChange={handleForm}
                 />
                 <StyledInput
+                    data-test="password"
                     name="password"
                     placeholder="Senha"
                     type="password"
@@ -65,7 +67,7 @@ export default function LoginPage() {
                     value={form.password}
                     onChange={handleForm}
                 />
-                <StyledButton type="submit" disabled={isLoading}>
+                <StyledButton data-test="sign-in-submit" type="submit" disabled={isLoading}>
                     {isLoading ? (
                         <ThreeDots width={50} height={50} color="#FFFFFF" />
                     ) : "Entrar"}

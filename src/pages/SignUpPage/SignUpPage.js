@@ -38,6 +38,7 @@ export default function SignUpPage() {
             <h1>My Wallet</h1>
             <StyledForm onSubmit={handleSignUp}>
                 <StyledInput
+                    data-test="name"
                     name="name"
                     placeholder="Nome"
                     type="text"
@@ -47,6 +48,7 @@ export default function SignUpPage() {
                     onChange={handleForm}
                 />
                 <StyledInput
+                    data-test="email"
                     name="email"
                     placeholder="E-mail"
                     type="email"
@@ -56,6 +58,7 @@ export default function SignUpPage() {
                     onChange={handleForm}
                 />
                 <StyledInput
+                    data-test="password"
                     name="password"
                     placeholder="Senha"
                     type="password"
@@ -66,6 +69,7 @@ export default function SignUpPage() {
                 />
              
                 <StyledInput
+                    data-test="conf-password"
                     name="confirm_password"
                     placeholder="Confirme a senha"
                     type="password"
@@ -74,7 +78,7 @@ export default function SignUpPage() {
                     value={form.confirm_password}
                     onChange={handleForm}
                 />
-                <StyledButton type="submit" disabled={isLoading}>
+                <StyledButton  data-test="sign-up-submit" type="submit" disabled={isLoading}>
                 {isLoading ? (
                         <ThreeDots width={50} height={50} color="#FFFFFF" />
                     ) : "Cadastrar"}
